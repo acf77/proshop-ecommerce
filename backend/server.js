@@ -1,5 +1,6 @@
 const app = require("express")();
 const products = require("./data/products");
+const port = 8080;
 
 app.get("/", (req, res) => {
   res.send("API is running...");
@@ -14,4 +15,6 @@ app.get("/api/products/:id", (req, res) => {
   res.json(product);
 });
 
-app.listen(8080, () => console.log("Backend started!"));
+app.listen(port, () =>
+  console.log(`Backend started on http://localhost:${port}`)
+);
