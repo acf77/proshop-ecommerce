@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import Product from "../Components/Product";
-import { listProducts } from "../actions/productActions";
+import { listProductDetails, listProducts } from "../actions/productActions";
 
 import Message from "../Components/Message";
 import Loader from "../Components/Loader";
@@ -18,6 +18,10 @@ const HomeScreen = () => {
     dispatch(listProducts());
   }, [dispatch]);
 
+  // convert objects to array, so we can use .map()
+  const arrayProducts = Object.entries(products);
+  console.log(arrayProducts);
+
   return (
     <>
       <h1> Latest Products</h1>
@@ -27,9 +31,9 @@ const HomeScreen = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <Row>
-          {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
+          {arrayProducts.map((product) => (
+            <Col key={product[1]._id} sm={12} md={6} lg={4} xl={3}>
+              <Product product={product[1]} />
             </Col>
           ))}
         </Row>
