@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import {
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
