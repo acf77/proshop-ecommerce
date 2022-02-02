@@ -1,2 +1,6 @@
 {
+"material-icon-theme.activeIconPack": "react_redux",
+"workbench.iconTheme": "material-icon-theme",
+"material-icon-theme.folders.associations": {
+    "redux": "react_redux"}
 }
