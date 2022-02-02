@@ -20,7 +20,6 @@ const HomeScreen = () => {
 
   // convert objects to array, so we can use .map()
   const arrayProducts = Object.entries(products);
-  console.log(arrayProducts);
 
   return (
     <>

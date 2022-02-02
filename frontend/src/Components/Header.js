@@ -13,16 +13,17 @@ const Header = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  const [userInfo, setUserInfo] = useState();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("userInfo"));
-    setUserInfo(data);
-  }, []);
+  // useEffect(() => {
+  //   const data = JSON.parse(localStorage.getItem("userInfo"));
+  //   setUserInfo(data);
+  // }, []);
 
   const logoutHandler = () => {
     dispatch(logout());
-    window.location.reload();
+    navigate("/");
   };
 
   return (
