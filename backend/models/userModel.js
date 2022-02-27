@@ -1,4 +1,3 @@
-import bcryptjs from "bcryptjs";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 

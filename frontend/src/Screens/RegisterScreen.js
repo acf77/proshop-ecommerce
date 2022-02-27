@@ -28,19 +28,18 @@ const RegisterScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
+  const { loading, error } = userRegister;
 
-  // For some unexplainable reason, the redux dispatch login action doesn't work, here's a workaround //
   async function handleSubmit(e) {
     e.preventDefault();
     password !== confirmPassword
       ? setMessage("Passwords do not match!")
       : dispatch(register(name, email, password));
+    navigate("/");
   }
 
   useEffect(() => {
     if (localStorage.getItem("userInfo")) {
-      navigate("/");
     }
   }, [navigate]);
 
@@ -50,6 +49,7 @@ const RegisterScreen = () => {
       {error && <Message variant="danger">{error}</Message>}
       {message && <Message variant="danger">{message}</Message>}
       {loading && <Loader />}
+
       <Form onSubmit={handleSubmit}>
         <FormGroup controlId="name">
           <FormLabel>Name</FormLabel>

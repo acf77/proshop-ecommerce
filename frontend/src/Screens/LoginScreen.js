@@ -10,7 +10,6 @@ import {
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import Message from "../Components/Message";
 import Loader from "../Components/Loader";
@@ -29,27 +28,21 @@ const LoginScreen = () => {
   const { loading, error } = user;
 
   const redirect = {};
-  // const dispatch = useDispatch();
-  // const userLogin = useSelector((state) => state.userLogin);
 
-  // For some unexplainable reason, the redux dispatch login action doesn't work, here's a workaround //
   async function handleSubmit(e) {
     e.preventDefault();
     dispatch(login(email, password));
+    navigate("/");
   }
 
   useEffect(() => {
-    if (localStorage.getItem("userInfo")) {
-      navigate("/");
-    }
+    localStorage.getItem("userInfo") ? navigate("/") : navigate("/login");
   }, [navigate]);
 
   return (
     <FormContainer>
       <h1>Sign in</h1>
-      {error && (
-        <Message variant="danger">Houver um erro ao tentar logar!</Message>
-      )}
+      {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={handleSubmit}>
         <FormGroup controlId="email">
